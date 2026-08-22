@@ -49,7 +49,7 @@ const explorer = cosmiconfigSync('myapp', {
 Both loaders shell out to the Pkl toolchain, so the sync one blocks the event loop for the duration of the evaluation. Prefer `pklLoader` unless you're in a context that can't await – a CLI's startup path, for instance.
 
 
-> ![TIP]
+> [!TIP]
 > The config file is handed to Pkl by path, so relative `amends`, `import` and `read()` URIs resolve against the config file itself.
 
 ### Custom Pkl options
