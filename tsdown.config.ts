@@ -8,7 +8,7 @@ export default defineConfig((options) => {
 		clean: isProduction,
 		dts: isProduction,
 		entry: 'src/index.ts',
-		format: 'esm',
+		format: ['esm', 'cjs'],
 		minify: isProduction,
 		platform: 'node',
 	};
