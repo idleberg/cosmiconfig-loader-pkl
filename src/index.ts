@@ -20,11 +20,17 @@ export type LoaderOptions = {
 	cache?: { enabled: false } | { enabled: true; directory?: string };
 };
 
-/** Asynchronous loader, assignable to cosmiconfig's `Loader`. */
-export type Loader = (filePath: string) => Promise<unknown>;
+/**
+ * Asynchronous loader, assignable to cosmiconfig's `Loader`.
+ *
+ * `content` is accepted for signature compatibility and deliberately unused –
+ * see {@link createLoaders}. cosmiconfig's own `loadJs` ignores it for the same
+ * reason.
+ */
+export type Loader = (filePath: string, content?: string) => Promise<unknown>;
 
 /** Synchronous loader, assignable to cosmiconfig's `LoaderSync`. */
-export type LoaderSync = (filePath: string) => unknown;
+export type LoaderSync = (filePath: string, content?: string) => unknown;
 
 export type Loaders = {
 	async: Loader;
@@ -66,6 +72,18 @@ function evaluationError(filePath: string, cause: unknown): Error {
 	return new Error(`Failed to evaluate Pkl config at ${filePath}`, { cause });
 }
 
+/**
+ * Guards against the one mistake the cosmiconfig signature invites: passing the
+ * second argument as the first. A path never spans lines, whereas Pkl source
+ * almost always does, so this catches `loader(content)` before Pkl reports it as
+ * a missing module and echoes the whole config back as a filename.
+ */
+function assertFilePath(filePath: string): void {
+	if (/[\r\n\0]/.test(filePath)) {
+		throw new TypeError('Expected a path to a Pkl module, but received what looks like Pkl source.');
+	}
+}
+
 function parseOutput(filePath: string, jsonContent: string): unknown {
 	try {
 		return JSON.parse(jsonContent);
@@ -76,15 +94,21 @@ function parseOutput(filePath: string, jsonContent: string): unknown {
 
 /**
  * Creates a pair of custom loader functions that evaluate a Pkl config file and return the resulting JSON object.
+ *
+ * Both loaders take cosmiconfig's `(filePath, content)` signature but ignore
+ * `content`: a Pkl module is evaluated by path so that relative `amends`,
+ * `import` and `read()` URIs resolve against the config file, which is
+ * impossible from source text alone. cosmiconfig reads `content` from that very
+ * path, so the two can never disagree.
  * @param options - Options to pass to the Pkl CLI.
  * @returns An object holding an asynchronous and a synchronous loader.
  */
 export function createLoaders(options?: LoaderOptions): Loaders {
-	// The module is handed to Pkl by path, never by content, so that relative
-	// `amends`, `import` and `read()` URIs resolve against the config file.
 	return {
 		async: async (filePath) => {
 			let jsonContent: string;
+
+			assertFilePath(filePath);
 
 			try {
 				const { stdout } = await execFileAsync(getExePath(), buildArgs(filePath, options), buildExecOptions(options));
@@ -99,6 +123,8 @@ export function createLoaders(options?: LoaderOptions): Loaders {
 
 		sync: (filePath) => {
 			let jsonContent: string;
+
+			assertFilePath(filePath);
 
 			try {
 				jsonContent = execFileSync(getExePath(), buildArgs(filePath, options), {
@@ -121,11 +147,11 @@ export function createLoaders(options?: LoaderOptions): Loaders {
 const defaultLoaders = createLoaders();
 
 /**
- * A preconfigured asynchronous loader that evaluates a Pkl config file and returns the resulting JSON object.
+ * A asynchronous loader that evaluates a Pkl config file and returns the resulting JSON object.
  */
 export const pklLoader: Loader = defaultLoaders.async;
 
 /**
- * A preconfigured synchronous loader that evaluates a Pkl config file and returns the resulting JSON object.
+ * A synchronous loader that evaluates a Pkl config file and returns the resulting JSON object.
  */
 export const pklLoaderSync: LoaderSync = defaultLoaders.sync;

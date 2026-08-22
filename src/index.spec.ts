@@ -155,6 +155,43 @@ describe('preconfigured loaders', () => {
 	});
 });
 
+describe('cosmiconfig signature', () => {
+	// cosmiconfig calls loaders as (filePath, content). `content` is ignored
+	// here, but accepting it keeps the shape of every other loader.
+	it('ignores the content argument and evaluates the file', async () => {
+		const { async: loader } = createLoaders();
+
+		await expect(loader(fixture('valid.pkl'), 'name = "Not this one"')).resolves.toStrictEqual(expected);
+	});
+
+	it('ignores the content argument synchronously', () => {
+		const { sync: loader } = createLoaders();
+
+		expect(loader(fixture('valid.pkl'), 'name = "Not this one"')).toStrictEqual(expected);
+	});
+
+	it('rejects Pkl source passed where a path is expected', async () => {
+		const { async: loader } = createLoaders();
+
+		await expect(loader('name = "demo.nsi"\ncmd = "makensis"')).rejects.toThrow(/Expected a path to a Pkl module/);
+	});
+
+	it('throws on Pkl source passed where a path is expected, synchronously', () => {
+		const { sync: loader } = createLoaders();
+
+		expect(() => loader('name = "demo.nsi"\ncmd = "makensis"')).toThrow(/Expected a path to a Pkl module/);
+	});
+
+	it('reports that mistake as a TypeError, not a Pkl evaluation failure', async () => {
+		const { async: loader } = createLoaders();
+
+		const error = await loader('name = "demo.nsi"\ncmd = "makensis"').catch((error: unknown) => error);
+
+		expect(error).toBeInstanceOf(TypeError);
+		expect((error as Error).cause).toBeUndefined();
+	});
+});
+
 describe('error handling', () => {
 	it('rejects when the file does not exist', async () => {
 		const { async: loader } = createLoaders();
