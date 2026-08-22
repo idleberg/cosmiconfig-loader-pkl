@@ -4,7 +4,7 @@
 
 [![License](https://img.shields.io/github/license/idleberg/cosmiconfig-loader-pkl?color=blue&style=for-the-badge)](https://github.com/idleberg/cosmiconfig-loader-pkl/blob/main/LICENSE)
 [![Version: npm](https://img.shields.io/npm/v/cosmiconfig-loader-pkl?style=for-the-badge)](https://www.npmjs.org/package/cosmiconfig-loader-pkl)
-![GitHub branch check runs](https://img.shields.io/github/check-runs/idleberg/cosmiconfig-loader-pkl/main?style=for-the-badge)
+[![Build](https://img.shields.io/github/actions/workflow/status/idleberg/cosmiconfig-loader-pkl/node.yml?style=for-the-badge)](https://github.com/idleberg/cosmiconfig-loader-pkl/actions)
 
 ## Installation 💿
 
@@ -19,8 +19,6 @@ Pass the loader to cosmiconfig's `loaders` option, keyed by the `.pkl` extension
 ```ts
 import { cosmiconfig } from 'cosmiconfig';
 import { pklLoader } from 'cosmiconfig-loader-pkl';
-
-const moduleName = 'demo';
 
 const explorer = cosmiconfig('myapp', {
 	searchPlaces: ['myapp.config.pkl'],
@@ -49,7 +47,7 @@ const explorer = cosmiconfigSync('myapp', {
 Both loaders shell out to the Pkl toolchain, so the sync one blocks the event loop for the duration of the evaluation. Prefer `pklLoader` unless you're in a context that can't await – a CLI's startup path, for instance.
 
 
-> ![TIP]
+> [!TIP]
 > The config file is handed to Pkl by path, so relative `amends`, `import` and `read()` URIs resolve against the config file itself.
 
 ### Custom Pkl options
