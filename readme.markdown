@@ -23,7 +23,7 @@ import { pklLoader } from 'cosmiconfig-loader-pkl';
 const moduleName = 'demo';
 
 const explorer = cosmiconfig('myapp', {
-	searchPlaces: [ 'myapp.config.pkl' ],
+	searchPlaces: ['myapp.config.pkl'],
 	loaders: {
 		'.pkl': pklLoader,
 	},
