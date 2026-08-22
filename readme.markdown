@@ -53,12 +53,13 @@ import { cosmiconfig } from 'cosmiconfig';
 import { createLoader } from 'cosmiconfig-loader-pkl';
 
 const pklLoader = await createLoader({
+	// default config
 	allowedModules: undefined,
 	allowedResources: undefined,
 	timeout: 0,
 	cache: {
 		enabled: false,
-		directory: './node_modules/.pkl-cache'
+		directory: undefined
 	}
 });
 
