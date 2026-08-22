@@ -6,8 +6,6 @@
 [![Version: npm](https://img.shields.io/npm/v/cosmiconfig-loader-pkl?style=for-the-badge)](https://www.npmjs.org/package/cosmiconfig-loader-pkl)
 ![GitHub branch check runs](https://img.shields.io/github/check-runs/idleberg/cosmiconfig-loader-pkl/main?style=for-the-badge)
 
-A template with highly opinionated configuration. Works for me, maybe not for you!
-
 ## Installation 💿
 
 ```shell
