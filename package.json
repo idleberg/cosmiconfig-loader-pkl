@@ -1,6 +1,6 @@
 {
 	"name": "cosmiconfig-loader-pkl",
-	"version": "0.1.2",
+	"version": "0.2.0",
 	"description": "Loader for Apple's Pkl format.",
 	"license": "MIT",
 	"author": "Jan T. Sott",
