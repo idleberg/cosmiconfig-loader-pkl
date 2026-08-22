@@ -1,0 +1,58 @@
+{
+	"name": "@idleberg/node-package-template",
+	"version": "0.0.0",
+	"private": true,
+	"description": "Just my personal package template",
+	"license": "MIT",
+	"author": "Jan T. Sott",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/idleberg/node-package-template.git"
+	},
+	"keywords": [],
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.mts",
+			"import": "./dist/index.mjs"
+		}
+	},
+	"engines": {
+		"node": ">=20"
+	},
+	"files": [
+		"dist/",
+		"LICENSE",
+		"README.md"
+	],
+	"scripts": {
+		"build": "tsdown",
+		"dev": "tsdown --watch",
+		"lint": "concurrently --prefix-colors blue,magenta npm:lint:*",
+		"lint:biome": "biome check",
+		"lint:e18e": "e18e-cli analyze",
+		"prepack": "npm run build",
+		"publish:jsr": "deno publish",
+		"publish:npm": "np",
+		"test": "vitest run"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^20.4.1",
+		"@commitlint/config-conventional": "^20.4.1",
+		"@e18e/cli": "^0.3.1",
+		"@idleberg/configs": "^0.4.2",
+		"@types/node": "^24.10.0",
+		"@vitest/coverage-v8": "^4.0.18",
+		"concurrently": "^9.2.1",
+		"np": "^11.0.2",
+		"tsdown": "^0.20.3",
+		"typescript": "^5.9.3",
+		"vitest": "^4.0.18"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"lefthook"
+		]
+	},
+	"packageManager": "pnpm@10.27.0+sha512.72d699da16b1179c14ba9e64dc71c9a40988cbdc65c264cb0e489db7de917f20dcf4d64d8723625f2969ba52d4b7e2a1170682d9ac2a5dcaeaab732b7e16f04a"
+}
