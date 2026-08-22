@@ -2,14 +2,21 @@
 	"name": "cosmiconfig-loader-pkl",
 	"version": "0.0.0",
 	"private": true,
-	"description": "Just my personal package template",
+	"description": "Loader for Apple's Pkl format.",
 	"license": "MIT",
 	"author": "Jan T. Sott",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/idleberg/cosmiconfig-loader-pkl.git"
 	},
-	"keywords": [],
+	"keywords": [
+		"coscmiconfig",
+		"pkl",
+		"loader",
+		"load",
+		"configuration",
+		"config"
+	],
 	"type": "module",
 	"exports": {
 		".": {
