@@ -20,8 +20,6 @@ Pass the loader to cosmiconfig's `loaders` option, keyed by the `.pkl` extension
 import { cosmiconfig } from 'cosmiconfig';
 import { pklLoader } from 'cosmiconfig-loader-pkl';
 
-const moduleName = 'demo';
-
 const explorer = cosmiconfig('myapp', {
 	searchPlaces: ['myapp.config.pkl'],
 	loaders: {
