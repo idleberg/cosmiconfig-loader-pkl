@@ -10,8 +10,6 @@ A template with highly opinionated configuration. Works for me, maybe not for yo
 
 ## Installation 💿
 
-In GitHub, click on *"Use this template"* to create a new repo from this template. Alternatively, you can use `degitly`.
-
 ```shell
 npm i cosmiconfig-loader-pkl
 ```
