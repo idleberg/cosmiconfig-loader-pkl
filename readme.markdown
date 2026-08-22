@@ -32,27 +32,43 @@ const explorer = cosmiconfig('myapp', {
 });
 ```
 
-### Asynchronous only ⏳
+### Synchronous usage 🔁
 
-Evaluating Pkl shells out to the Pkl toolchain, which can't be done synchronously. This has two consequences:
+`pklLoaderSync` is a valid `LoaderSync`, for use with `cosmiconfigSync()`:
 
-**1. The sync API is not supported.** `pklLoader` returns a `Promise`, making it a valid `AsyncLoader` but not a valid `SyncLoader`. Use `cosmiconfig()` with `await explorer.search()` or `await explorer.load(filePath)` – never `cosmiconfigSync()`, whose `searchSync()`/`loadSync()` can't await the result.
+```ts
+import { cosmiconfigSync } from 'cosmiconfig';
+import { pklLoaderSync } from 'cosmiconfig-loader-pkl';
 
-**2. The module uses top-level `await`.** `pklLoader` is created with top-level await, so it can only be imported from an ES module, or through a dynamic import in CommonJS:
+const explorer = cosmiconfigSync('myapp', {
+	searchPlaces: ['myapp.config.pkl'],
+	loaders: {
+		'.pkl': pklLoaderSync,
+	},
+});
+```
 
-```js
-const { pklLoader } = await import('cosmiconfig-loader-pkl');
+Both loaders shell out to the Pkl toolchain, so the sync one blocks the event loop for the duration of the evaluation. Prefer `pklLoader` unless you're in a context that can't await – a CLI's startup path, for instance.
+
+### Relative imports 🔗
+
+The config file is handed to Pkl by path, so relative `amends`, `import` and `read()` URIs resolve against the config file itself, independently of the current working directory:
+
+```pkl
+amends "shared/base.pkl"
+
+port = 8080
 ```
 
 ### Custom Pkl options ⚙️
 
-Use `createLoader()` to pass options through to [`@pkl-community/pkl-eval`](https://www.npmjs.com/package/@pkl-community/pkl-eval). It's async as well, so await it before handing the result to cosmiconfig. The `format` option is always forced to `json` and can't be overridden:
+Use `createLoaders()` to pass options through to the Pkl CLI. It returns both loaders as `{ async, sync }`. The output format is always `json` and can't be overridden:
 
 ```ts
 import { cosmiconfig } from 'cosmiconfig';
-import { createLoader } from 'cosmiconfig-loader-pkl';
+import { createLoaders } from 'cosmiconfig-loader-pkl';
 
-const pklLoader = await createLoader({
+const { async: pklLoader } = createLoaders({
 	// default config
 	allowedModules: undefined,
 	allowedResources: undefined,

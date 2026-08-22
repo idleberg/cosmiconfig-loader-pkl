@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@pkl-community/pkl-eval':
-        specifier: ^0.0.3
-        version: 0.0.3
+      '@pkl-community/pkl':
+        specifier: ^0.30.2
+        version: 0.30.2
     devDependencies:
       '@commitlint/cli':
         specifier: ^21.2.2
@@ -516,31 +516,28 @@ packages:
   '@oxc-project/types@0.146.0':
     resolution: {integrity: sha512-XC0QsnnhVe7sLIWmYmdPw7x5P0h4W8vUU3Nv1ySgWXtvCz8NizoAEpGXA0sOYoJQV2Rl13LgURAHQ5cI5ILCSA==}
 
-  '@pkl-community/pkl-darwin-arm64@0.25.1-2':
-    resolution: {integrity: sha512-7yABD7X2WkWUqakv5aH58EUDz9CMHcukO2/Mq7y/QNwr5zRLMmBy+l/cL0sOgr3aS6YipoaDKsxC5AmjjgowTg==}
+  '@pkl-community/pkl-darwin-arm64@0.30.2':
+    resolution: {integrity: sha512-UuP0XCQBrLY8hqwFJcqhi0d08Fe7AsllU9/0LEikvMUWjQmvFOTsPSk4T+qiXQBTE0v2uHq17rEl75MIo9eB/Q==}
     cpu: [arm64]
     os: [darwin]
 
-  '@pkl-community/pkl-darwin-x64@0.25.1-2':
-    resolution: {integrity: sha512-iFBYLiiPjcelfPPlaer36IPTQbdQhsmrOLY9judwVhmoxipprL82ZoJMDkM4PUQ9PjMPjYuYzb2F/cmzHnx2Yg==}
+  '@pkl-community/pkl-darwin-x64@0.30.2':
+    resolution: {integrity: sha512-MsG4nAg6BaY0BsLoS9577NqFl/nmwVNlrMWyUllQgw9q1JXFmWk04MWp3AkhLv90eOlpGs5eAYQt5j09su/huA==}
     cpu: [x64]
     os: [darwin]
 
-  '@pkl-community/pkl-eval@0.0.3':
-    resolution: {integrity: sha512-I0WCYOw1mcsIiqAl5iqg3NARIs4090Uq2D+58i++5Xf9aSZnw+S66rTDaCVuYwY+vmAhlifso+1iJd+JG/ijgg==}
-
-  '@pkl-community/pkl-linux-arm64@0.25.1-2':
-    resolution: {integrity: sha512-qwCHglXM3SJz4IWt+NpeqXtAVY7d5QxXMOpv97ia0+HFKdno7e2M4AksBj/5L0hbhlSP5KfGtQD1vMV2RdmOKA==}
+  '@pkl-community/pkl-linux-arm64@0.30.2':
+    resolution: {integrity: sha512-EfMPqn4izLzC/JvkjE3qU7/27x9DBKI7xinC/KTGcR8y2SZHusoLdHGQikvG1Gc1CFgVGKUNqyYTtX+mo9L2yw==}
     cpu: [arm64]
     os: [linux]
 
-  '@pkl-community/pkl-linux-x64@0.25.1-2':
-    resolution: {integrity: sha512-5JRzgrQxuSY0RRHIeHZGCfKySnNzyQciLLjLzFxUseAZpVusuRTnbQAEnij1pUd5PYlfr05s0OWiIZLJJbnLBg==}
+  '@pkl-community/pkl-linux-x64@0.30.2':
+    resolution: {integrity: sha512-pkf719H7n7iI9FAnTTcZMMuha9kv7wp7cszRlLjhr7wUNvi3XbK/y1TwTd0h9QO/0HcWwpCZF+uQsK1oRV9Uag==}
     cpu: [x64]
     os: [linux]
 
-  '@pkl-community/pkl@0.25.1-2':
-    resolution: {integrity: sha512-WVxoTTp8vZuCdEoYeDY8Yiuj2etKBxDioMPFqF04g7SvKq7bPR5bT0GUGJGUvQpiGGG4+FfgHESsRYflo3AX+g==}
+  '@pkl-community/pkl@0.30.2':
+    resolution: {integrity: sha512-nx25N4mgnV87jW7mxrkdaFCtMW0/teRE/gWe5KnMVDN7vZUo49JyHPPGBEjAHgxfkbxe4LGa+8ApcJFpr8bNGw==}
     hasBin: true
 
   '@pnpm/config.env-replace@1.1.0':
@@ -3229,28 +3226,24 @@ snapshots:
 
   '@oxc-project/types@0.146.0': {}
 
-  '@pkl-community/pkl-darwin-arm64@0.25.1-2':
+  '@pkl-community/pkl-darwin-arm64@0.30.2':
     optional: true
 
-  '@pkl-community/pkl-darwin-x64@0.25.1-2':
+  '@pkl-community/pkl-darwin-x64@0.30.2':
     optional: true
 
-  '@pkl-community/pkl-eval@0.0.3':
-    dependencies:
-      '@pkl-community/pkl': 0.25.1-2
-
-  '@pkl-community/pkl-linux-arm64@0.25.1-2':
+  '@pkl-community/pkl-linux-arm64@0.30.2':
     optional: true
 
-  '@pkl-community/pkl-linux-x64@0.25.1-2':
+  '@pkl-community/pkl-linux-x64@0.30.2':
     optional: true
 
-  '@pkl-community/pkl@0.25.1-2':
+  '@pkl-community/pkl@0.30.2':
     optionalDependencies:
-      '@pkl-community/pkl-darwin-arm64': 0.25.1-2
-      '@pkl-community/pkl-darwin-x64': 0.25.1-2
-      '@pkl-community/pkl-linux-arm64': 0.25.1-2
-      '@pkl-community/pkl-linux-x64': 0.25.1-2
+      '@pkl-community/pkl-darwin-arm64': 0.30.2
+      '@pkl-community/pkl-darwin-x64': 0.30.2
+      '@pkl-community/pkl-linux-arm64': 0.30.2
+      '@pkl-community/pkl-linux-x64': 0.30.2
 
   '@pnpm/config.env-replace@1.1.0': {}
 

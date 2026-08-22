@@ -1,5 +1,5 @@
 {
-	"name": "@idleberg/cosmiconfig-loader-pkl",
+	"name": "cosmiconfig-loader-pkl",
 	"version": "0.0.0",
 	"private": true,
 	"description": "Just my personal package template",
@@ -23,7 +23,7 @@
 	"files": [
 		"dist/",
 		"LICENSE",
-		"README.md"
+		"readme.markdown"
 	],
 	"scripts": {
 		"build": "tsdown",
@@ -37,7 +37,7 @@
 		"test": "vitest run"
 	},
 	"dependencies": {
-		"@pkl-community/pkl-eval": "^0.0.3"
+		"@pkl-community/pkl": "^0.30.2"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^21.2.2",
