@@ -4,7 +4,7 @@
 
 [![License](https://img.shields.io/github/license/idleberg/cosmiconfig-loader-pkl?color=blue&style=for-the-badge)](https://github.com/idleberg/cosmiconfig-loader-pkl/blob/main/LICENSE)
 [![Version: npm](https://img.shields.io/npm/v/cosmiconfig-loader-pkl?style=for-the-badge)](https://www.npmjs.org/package/cosmiconfig-loader-pkl)
-![GitHub branch check runs](https://img.shields.io/github/check-runs/idleberg/cosmiconfig-loader-pkl/main?style=for-the-badge)
+[![Build](https://img.shields.io/github/actions/workflow/status/idleberg/cosmiconfig-loader-pkl/node.yml?style=for-the-badge)](https://github.com/idleberg/cosmiconfig-loader-pkl/actions)
 
 ## Installation 💿
 
